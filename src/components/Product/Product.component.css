@@ -1,0 +1,11 @@
+.demo-card-square.mdl-card {
+  width: 100%;
+  height: 500px;
+}
+.demo-card-square > .mdl-card__title > img {
+  width: 100%;
+}
+
+.demo-card-square .mdl-card__supporting-text {
+  height: 105px;
+}

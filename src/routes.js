@@ -1,6 +1,6 @@
 import ProductList from './pages/ProductList/ProductList.component';
 import ProductDetails from './pages/ProductDetails/ProductDetails.component';
-
+import Cart from './pages/Cart/Cart.component';
 
 const routes = [
   {
@@ -10,11 +10,15 @@ const routes = [
     title: "Electronics"
   },
   {
-    path: "/:id",
-    component: ProductDetails,
-    protected: false,
-    title: "Product Details"
+    path: "/cart",
+    component: Cart,
+    title: "Cart"
   },
+  {
+    path: "/electronics/:id",
+    component: ProductDetails,
+    title: "Product Details"
+  }
 ];
 
 export default routes;

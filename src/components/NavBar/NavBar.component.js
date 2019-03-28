@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import './NavBar.component.css';
 import { Link } from 'react-router-dom';
+import { bindActionCreators, compose } from 'redux';
+import { connect } from 'react-redux';
+import './NavBar.component.css';
 
-export class NavBarComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
+class NavBar extends Component {
   render() {
+    const {Cart: {cartList}} = this.props;
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header className="mdl-layout__header">
@@ -20,9 +20,12 @@ export class NavBarComponent extends Component {
               <Link className="mdl-navigation__link" to="/">Home & Furniture</Link>
             </nav>
             <div className="mdl-layout-spacer" />
-            <div>
+            <Link className="app-shopping-cart mdl-button mdl-js-button mdl-button--icon" to="/cart">
               <i className="material-icons">add_shopping_cart</i>
-            </div>
+              {cartList && cartList.length > 0 && <span className="number">
+                {cartList.length}
+              </span>}
+            </Link>
           </div>
         </header>
         <div className="mdl-layout__drawer">
@@ -38,5 +41,23 @@ export class NavBarComponent extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  Cart: state.Cart
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+    },
+    dispatch
+  );
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(NavBar);
 
 

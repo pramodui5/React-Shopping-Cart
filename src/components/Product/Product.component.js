@@ -15,7 +15,7 @@ export class ProductComponent extends Component {
           {info}
         </div>
         <div className="mdl-card__actions mdl-card--border">
-          <Link to={`/${id}`} className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          <Link to={`/electronics/${id}`} className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
             View Details
           </Link>
         </div>

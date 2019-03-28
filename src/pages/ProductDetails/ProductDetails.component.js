@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {find as _find} from 'lodash';
 import './ProductDetails.component.css';
 import { getProductList } from '../../actions/product.actions';
+import {addToCart} from '../../actions/cart.actions';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 
@@ -12,6 +13,9 @@ class ProductDetails extends Component {
     if (!(productList && productList.length > 0)) {
       this.props.getProductList();
     }
+  }
+  addToCartActionHandler(product) {
+    this.props.addToCart(product);
   }
   render() {
     const {match: {params: {id}}, Products: {productList}} = this.props;
@@ -26,6 +30,9 @@ class ProductDetails extends Component {
         <div className="mdl-cell mdl-cell--6-col">
           <div className="mdl-card__supporting-text">
             <h2 className="mdl-card__title-text">Iphone</h2>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Aenan convallis.
+
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Aenan convallis.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -46,9 +53,10 @@ class ProductDetails extends Component {
             Aenan convallis.</p>
           </div>
           <div className="mdl-card__actions mdl-card--border">
-            <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    onClick={()=> this.addToCartActionHandler(selectedProduct)}>
               Add to Cart
-            </a>
+            </button>
           </div>
         </div>
       </div>}
@@ -65,7 +73,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      getProductList
+      getProductList,
+      addToCart
     },
     dispatch
   );
